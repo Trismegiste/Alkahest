@@ -19,6 +19,7 @@ class InvariantObject extends AbstractMapper
 
     public function __construct(TypeRegistry $ctx, array $fqcn)
     {
+        parent::__construct($ctx);
         $this->invariant = $fqcn;
     }
 
