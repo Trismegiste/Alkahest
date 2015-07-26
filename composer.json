@@ -1,0 +1,25 @@
+{
+    "name": "trismegiste/alkahest",
+    "description": "serializer / unserializer",
+    "type": "library",
+    "keywords": ["dbal", "serializer", "unserializer"],
+    "authors": [
+    {
+        "name": "Trismegiste"
+    }
+    ],
+   "require": {
+        "php": ">=5.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Trismegiste\\Alkahest\\": "src"
+        }
+    },
+    "license": "MIT",
+    "extra": {
+        "branch-alias": {
+            "dev-master": "2.3.x-dev"
+        }
+    }
+}
