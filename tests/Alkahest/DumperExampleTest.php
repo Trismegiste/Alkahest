@@ -7,7 +7,7 @@
 namespace tests\Alkahest;
 
 use Trismegiste\Alkahest\Transform\Delegation\MappingDirector;
-use Trismegiste\Alkahest\Transform\Delegation\Stage\Invocation;
+use Trismegiste\Alkahest\Transform\Delegation\Stage\Neutral;
 use Trismegiste\Alkahest\Transform\Transformer;
 
 /**
@@ -21,7 +21,7 @@ class DumperExampleTest extends \PHPUnit_Framework_TestCase
     protected function setUp()
     {
         $director = new MappingDirector();
-        $mappingChain = $director->create(new Invocation());
+        $mappingChain = $director->create(new Neutral());
         $this->transform = new Transformer($mappingChain);
     }
 

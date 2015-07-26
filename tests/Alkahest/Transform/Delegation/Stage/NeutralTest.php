@@ -59,7 +59,11 @@ class NeutralTest extends AbstractStageTest
             )
         );
 
-        return array(array($obj, $dump), array($obj2, $dump2));
+        return [
+            [$obj, $dump],
+            [$obj2, $dump2],
+            [new \DateTime(), new \DateTime()]
+        ];
     }
 
     public function getDataToDb()

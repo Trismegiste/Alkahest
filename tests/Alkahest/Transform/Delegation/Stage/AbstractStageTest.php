@@ -41,8 +41,6 @@ abstract class AbstractStageTest extends \PHPUnit_Framework_TestCase
     {
         $sample = array(null, 42, 3.141592, true, 'tribble', array('Ar' => 6));
         $sample[] = array('root' => array('trunk' => array('branch' => array('leaf'))));
-        $sample[] = new \MongoBinData('some blob', 2);
-        $sample[] = new \MongoId();
         $compare = array();
         foreach ($sample as $val) {
             $compare[] = array($val, $val);
@@ -57,7 +55,6 @@ abstract class AbstractStageTest extends \PHPUnit_Framework_TestCase
     public function getDataFromDb()
     {
         $compare = $this->getSymetricData();
-        $compare[] = array(new \DateTime(), new \MongoDate());
         return $compare;
     }
 
@@ -65,7 +62,6 @@ abstract class AbstractStageTest extends \PHPUnit_Framework_TestCase
     {
         $compare = $this->getSymetricData();
         $compare[] = array(fopen(__FILE__, 'r'), null);
-        $compare[] = array(new \DateTime(), new \MongoDate(time(), 0));
         return $compare;
     }
 

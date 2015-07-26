@@ -8,7 +8,7 @@ namespace Trismegiste\Alkahest\Transform\Tests;
 
 use Trismegiste\Alkahest\Transform\Transformer;
 use Trismegiste\Alkahest\Transform\Delegation\MappingDirector;
-use Trismegiste\Alkahest\Transform\Delegation\Stage\Invocation;
+use Trismegiste\Alkahest\Transform\Delegation\Stage\Neutral;
 use tests\Alkahest\Fixtures\IntoVoid;
 
 /**
@@ -24,7 +24,7 @@ class TransformerTest extends \PHPUnit_Framework_TestCase
     protected function setUp()
     {
         $director = new MappingDirector();
-        $this->service = new Transformer($director->create(new Invocation()));
+        $this->service = new Transformer($director->create(new Neutral()));
     }
 
     protected function tearDown()
