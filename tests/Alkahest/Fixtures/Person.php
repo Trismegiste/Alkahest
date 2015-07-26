@@ -6,19 +6,7 @@
 
 namespace tests\Alkahest\Fixtures;
 
-use Trismegiste\Alkahest\Persistence\Persistable;
-
-class Person implements Persistable
+class Person
 {
-
-    public function getId()
-    {
-        
-    }
-
-    public function setId(\MongoId $od)
-    {
-        
-    }
 
 }

@@ -11,9 +11,9 @@ use Trismegiste\Alkahest\Transform\Mediator\TypeRegistry;
 
 /**
  * Design Pattern : Builder
- * Component : Builder (concrete) 
- * 
- * A builder to automagically store object in database by using the FQCN 
+ * Component : Builder (concrete)
+ *
+ * A builder to automagically store object in database by using the FQCN
  * for class keys. Zero configuration needed.
  * Only magic for storing the type of object.
  * Warning : Can be very messy in queries
@@ -22,7 +22,7 @@ use Trismegiste\Alkahest\Transform\Mediator\TypeRegistry;
  * model classes are needed.
  * Fail when a class not exists.
  */
-class Invocation extends AbstractStage
+class Neutral extends AbstractStage
 {
 
     public function createObject(TypeRegistry $algo)

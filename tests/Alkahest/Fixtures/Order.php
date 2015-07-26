@@ -6,10 +6,7 @@
 
 namespace tests\Alkahest\Fixtures;
 
-use Trismegiste\Alkahest\Persistence\Persistable;
-
-class Order extends Cart implements Persistable
+class Order extends Cart
 {
 
-    use \Trismegiste\Alkahest\Persistence\PersistableImpl;
 }

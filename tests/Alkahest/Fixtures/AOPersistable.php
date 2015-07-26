@@ -5,10 +5,8 @@ namespace tests\Alkahest\Fixtures;
 use Trismegiste\Alkahest\Persistence\Persistable;
 use Trismegiste\Alkahest\Persistence\PersistableImpl;
 
-class AOPersistable implements Persistable
+class AOPersistable
 {
-
-    use PersistableImpl;
 
     // we must wrap the ArrayObject and cannot extends it because PHP
     // cannot create internal class without calling the constructor
