@@ -55,7 +55,7 @@ class MapObjectTest extends MapperTestTemplate
 
     public function getNotResponsibleDataFromDb()
     {
-        return array(array(null), array(array('prop' => 'hello')), array(new \MongoDate()));
+        return array(array(null), array(array('prop' => 'hello')), array(new \DateTime()));
     }
 
     /**

@@ -52,7 +52,7 @@ class MapArrayTest extends MapperTestTemplate
 
     public function getNotResponsibleDataFromDb()
     {
-        return array(array(null), array(new \MongoDate()));
+        return array(array(null), array(new \DateTime()));
     }
 
 }

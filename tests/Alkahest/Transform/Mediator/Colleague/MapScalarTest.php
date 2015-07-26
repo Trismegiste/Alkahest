@@ -49,7 +49,7 @@ class MapScalarTest extends MapperTestTemplate
 
     public function getNotResponsibleDataFromDb()
     {
-        return array(array(null), array(array('hello')), array(new \MongoDate()));
+        return array(array(null), array(array('hello')), array(new \DateTime()));
     }
 
 }

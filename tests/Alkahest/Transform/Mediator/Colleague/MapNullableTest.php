@@ -51,7 +51,7 @@ class MapNullableTest extends MapperTestTemplate
 
     public function getNotResponsibleDataFromDb()
     {
-        return array(array(42), array(new \MongoDate()));
+        return array(array(42), array(new \DateTime()));
     }
 
 }
