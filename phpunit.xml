@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<phpunit bootstrap="tests/bootstrap.php"
-         colors="true">
+<phpunit bootstrap="tests/bootstrap.php" colors="true">
 
     <testsuites>
-        <testsuite name="Yuurei unit and func tests">
+        <testsuite name="Alkahest unit and func tests">
             <directory>./tests</directory>
         </testsuite>
     </testsuites>
@@ -15,9 +14,7 @@
     </filter>
 
     <logging>
-        <log type="coverage-html" target="./doc/coverage" charset="UTF-8"
-             yui="true" highlight="false"
-             lowUpperBound="50" highLowerBound="90"/>
+        <log type="coverage-html" target="./doc/coverage" lowUpperBound="50" highLowerBound="90"/>
     </logging>
 
 </phpunit>

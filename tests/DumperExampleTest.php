@@ -13,13 +13,11 @@ use Trismegiste\Alkahest\Transform\Transformer;
 /**
  * DumperExample gives example of the serializing process
  */
-class DumperExampleTest extends \PHPUnit_Framework_TestCase
-{
+class DumperExampleTest extends \PHPUnit\Framework\TestCase {
 
     protected $transform;
 
-    protected function setUp()
-    {
+    protected function setUp(): void {
         $director = new MappingDirector();
         $mappingChain = $director->create(new Neutral());
         $this->transform = new Transformer($mappingChain);
@@ -29,8 +27,7 @@ class DumperExampleTest extends \PHPUnit_Framework_TestCase
      * Transforms a complex object with non-empty constructor to
      * a recursive array
      */
-    public function testSerialize()
-    {
+    public function testSerialize() {
         $product = new LightSaber('red');
         $product->setOwner(new Owner('vader'));
         $dump = $this->transform->desegregate($product);
@@ -48,8 +45,7 @@ class DumperExampleTest extends \PHPUnit_Framework_TestCase
      * Creates a complex object with non-empty constructor from
      * a recursive array
      */
-    public function testUnserialize()
-    {
+    public function testUnserialize() {
         $dump = [
             '-fqcn' => 'tests\\Alkahest\\LightSaber',
             'color' => 'red',
@@ -68,46 +64,38 @@ class DumperExampleTest extends \PHPUnit_Framework_TestCase
 
 //////////////////////////////
 // some example class
-class LightSaber
-{
+class LightSaber {
 
     protected $color;
     protected $owner;
 
-    public function __construct($c)
-    {
+    public function __construct($c) {
         $this->color = $c;
     }
 
-    public function getColor()
-    {
+    public function getColor() {
         return $this->color;
     }
 
-    public function setOwner(Owner $own)
-    {
+    public function setOwner(Owner $own) {
         $this->owner = $own;
     }
 
-    public function getOwnerName()
-    {
+    public function getOwnerName() {
         return $this->owner->getName();
     }
 
 }
 
-class Owner
-{
+class Owner {
 
     protected $name;
 
-    public function __construct($name)
-    {
+    public function __construct($name) {
         $this->name = $name;
     }
 
-    public function getName()
-    {
+    public function getName() {
         return $this->name;
     }
 

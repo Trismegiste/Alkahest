@@ -4,22 +4,20 @@
     "type": "library",
     "keywords": ["dbal", "serializer", "unserializer"],
     "authors": [
-    {
-        "name": "Trismegiste"
-    }
+        {
+            "name": "Trismegiste"
+        }
     ],
-   "require": {
+    "require": {
         "php": ">=5.5"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9"
     },
     "autoload": {
         "psr-4": {
             "Trismegiste\\Alkahest\\": "src"
         }
     },
-    "license": "MIT",
-    "extra": {
-        "branch-alias": {
-            "dev-master": "2.3.x-dev"
-        }
-    }
+    "license": "MIT"
 }

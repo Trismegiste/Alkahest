@@ -10,4 +10,4 @@ if (!$loader = @include __DIR__ . '/../vendor/autoload.php') {
             'php composer.phar install' . PHP_EOL);
 }
 
-$loader->add('tests\\', dirname(__DIR__));
+$loader->addPsr4('tests\\Alkahest\\', __DIR__);
