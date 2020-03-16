@@ -14,8 +14,6 @@ use Trismegiste\Alkahest\Transform\Mediator\TypeRegistry;
  *
  * This is a contract for a builder of delegation of mapping
  * @see Mediator
- *
- * @author flo
  */
 interface MappingBuilder {
 
@@ -31,21 +29,21 @@ interface MappingBuilder {
      *
      * @param TypeRegistry $algo
      */
-    function createNonObject(TypeRegistry $algo);
+    function createNonObject(TypeRegistry $algo): void;
 
     /**
      * Register mappers for object
      *
      * @param TypeRegistry $algo
      */
-    function createObject(TypeRegistry $algo);
+    function createObject(TypeRegistry $algo): void;
 
     /**
      * Register mappers for database conversion (date, blob...)
      *
      * @param TypeRegistry $algo
      */
-    function createDbSpecific(TypeRegistry $algo);
+    function createDbSpecific(TypeRegistry $algo): void;
 
     /**
      * Registers the end of mapping chain
@@ -54,5 +52,5 @@ interface MappingBuilder {
      *
      * @param TypeRegistry $algo
      */
-    function createBlackHole(TypeRegistry $algo);
+    function createBlackHole(TypeRegistry $algo): void;
 }

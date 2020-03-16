@@ -32,7 +32,7 @@ abstract class AbstractStage implements MappingBuilder {
     /**
      * {@inheritDoc}
      */
-    public function createNonObject(TypeRegistry $algo) {
+    public function createNonObject(TypeRegistry $algo): void {
         new Colleague\MapArray($algo);
         new Colleague\MapScalar($algo);
         new Colleague\MapNullable($algo);
@@ -41,7 +41,7 @@ abstract class AbstractStage implements MappingBuilder {
     /**
      * {@inheritDoc}
      */
-    public function createDbSpecific(TypeRegistry $algo) {
+    public function createDbSpecific(TypeRegistry $algo): void {
         
     }
 
@@ -49,7 +49,7 @@ abstract class AbstractStage implements MappingBuilder {
      * {@inheritDoc}
      * Default adapter for implementation of the interface
      */
-    public function createBlackHole(TypeRegistry $algo) {
+    public function createBlackHole(TypeRegistry $algo): void {
         
     }
 
