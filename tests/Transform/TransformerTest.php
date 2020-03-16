@@ -27,11 +27,6 @@ class TransformerTest extends \PHPUnit\Framework\TestCase {
         unset($this->service);
     }
 
-    public function testOnlyObject() {
-        $this->expectException(\InvalidArgumentException::class);
-        $dump = $this->service->desegregate(array('nawak'));
-    }
-
     public function testSkippable() {
         $this->expectException(\LogicException::class);
         $obj = new IntoVoid();

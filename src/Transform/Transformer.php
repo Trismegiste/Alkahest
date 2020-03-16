@@ -22,10 +22,7 @@ class Transformer implements TransformerInterface {
     /**
      * {@inheritDoc}
      */
-    public function desegregate($obj) {
-        if (!is_object($obj)) {
-            throw new \InvalidArgumentException('Only object can be transformed into tree');
-        }
+    public function desegregate(object $obj): array {
         if ($obj instanceof Skippable) {
             throw new \LogicException('A root entity cannot be Skippable');
         }
@@ -36,7 +33,7 @@ class Transformer implements TransformerInterface {
     /**
      * {@inheritDoc}
      */
-    public function create(array $dump) {
+    public function create(array $dump): object {
         $obj = $this->delegation->recursivCreate($dump);
         if (gettype($obj) != 'object') {
             throw new \RuntimeException('The root entity is not an object');

@@ -8,11 +8,8 @@ namespace Trismegiste\Alkahest\Transform;
 
 /**
  * A contract to create object from array and array from object
- * 
- * @author flo
  */
-interface TransformerInterface
-{
+interface TransformerInterface {
 
     /**
      * Transform objects into array by adding a key for the FQCN
@@ -24,7 +21,7 @@ interface TransformerInterface
      * 
      * @throws \LogicException If $obj is not an object
      */
-    function desegregate($obj);
+    function desegregate(object $obj): array;
 
     /**
      * Restore a complex object of a rich document with its desegregated dump
@@ -36,5 +33,5 @@ interface TransformerInterface
      * 
      * @throws \LogicException If the tree does not contains a key for its FQCN
      */
-    function create(array $dump);
+    function create(array $dump): object;
 }
