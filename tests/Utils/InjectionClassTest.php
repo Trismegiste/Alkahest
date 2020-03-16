@@ -11,7 +11,7 @@ use Trismegiste\Alkahest\Utils\InjectionClass;
 /**
  * InjectionClassTest tests a normal behavior with internal type
  */
-class InjectionClassTest extends \PHPUnit_Framework_TestCase
+class InjectionClassTest extends \PHPUnit\Framework\TestCase
 {
 
     /**

@@ -12,18 +12,18 @@ use Trismegiste\Alkahest\Transform\Mediator\Colleague\MapFailure;
  * Design pattern : Template method
  * MapFailureTest tests for MapFailure (catches mapping problems)
  */
-class MapFailureTest extends \PHPUnit_Framework_TestCase
+class MapFailureTest extends \PHPUnit\Framework\TestCase
 {
 
     protected $mapper;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $mediator = $this->getMockForAbstractClass('Trismegiste\Alkahest\Transform\Mediator\AbstractMediator');
         $this->mapper = new MapFailure($mediator);
     }
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
         unset($this->mapper);
     }

@@ -10,23 +10,19 @@ namespace tests\Alkahest\Transform\Mediator\Colleague;
  * Design pattern : Template method
  * MapperTestTemplate is a template for testing mappers
  */
-abstract class MapperTestTemplate extends \PHPUnit_Framework_TestCase
-{
+abstract class MapperTestTemplate extends \PHPUnit\Framework\TestCase {
 
     protected $mapper;
 
-    protected function setUp()
-    {
+    protected function setUp(): void {
         $this->mapper = $this->createMapper();
     }
 
-    protected function tearDown()
-    {
+    protected function tearDown(): void {
         unset($this->mapper);
     }
 
-    protected function createMediatorMockup()
-    {
+    protected function createMediatorMockup() {
         $mediator = $this->getMockForAbstractClass('Trismegiste\Alkahest\Transform\Mediator\AbstractMediator');
         $mediator->expects($this->any())
                 ->method('recursivCreate')
@@ -47,8 +43,7 @@ abstract class MapperTestTemplate extends \PHPUnit_Framework_TestCase
     /**
      * @dataProvider getDataFromDb
      */
-    public function testMapFromDb($src, $dest)
-    {
+    public function testMapFromDb($src, $dest) {
         $obj = $this->mapper->mapFromDb($src);
         $this->assertEquals($dest, $obj);
     }
@@ -56,8 +51,7 @@ abstract class MapperTestTemplate extends \PHPUnit_Framework_TestCase
     /**
      * @dataProvider getDataToDb
      */
-    public function testMapToDb($src, $dest)
-    {
+    public function testMapToDb($src, $dest) {
         $dump = $this->mapper->mapToDb($src);
         $this->assertEquals($dest, $dump);
     }
@@ -73,32 +67,28 @@ abstract class MapperTestTemplate extends \PHPUnit_Framework_TestCase
     /**
      * @dataProvider getResponsibleDataToDb
      */
-    public function testResponsibleToDb($var)
-    {
+    public function testResponsibleToDb($var) {
         $this->assertTrue($this->mapper->isResponsibleToDb($var));
     }
 
     /**
      * @dataProvider getResponsibleDataFromDb
      */
-    public function testResponsibleFromDb($var)
-    {
+    public function testResponsibleFromDb($var) {
         $this->assertTrue($this->mapper->isResponsibleFromDb($var));
     }
 
     /**
      * @dataProvider getNotResponsibleDataToDb
      */
-    public function testNotResponsibleToDb($var)
-    {
+    public function testNotResponsibleToDb($var) {
         $this->assertFalse($this->mapper->isResponsibleToDb($var));
     }
 
     /**
      * @dataProvider getNotResponsibleDataFromDb
      */
-    public function testNotResponsibleFromDb($var)
-    {
+    public function testNotResponsibleFromDb($var) {
         $this->assertFalse($this->mapper->isResponsibleFromDb($var));
     }
 

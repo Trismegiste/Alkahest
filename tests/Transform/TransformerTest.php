@@ -16,35 +16,30 @@ use tests\Alkahest\Fixtures\IntoVoid;
  *
  * @author florent
  */
-class TransformerTest extends \PHPUnit_Framework_TestCase
-{
+class TransformerTest extends \PHPUnit\Framework\TestCase {
 
     protected $service;
 
-    protected function setUp()
-    {
+    protected function setUp(): void {
         $director = new MappingDirector();
         $this->service = new Transformer($director->create(new Neutral()));
     }
 
-    protected function tearDown()
-    {
+    protected function tearDown(): void {
         unset($this->service);
     }
 
     /**
      * @expectedException \InvalidArgumentException
      */
-    public function testOnlyObject()
-    {
+    public function testOnlyObject() {
         $dump = $this->service->desegregate(array('nawak'));
     }
 
     /**
      * @expectedException \LogicException
      */
-    public function testSkippable()
-    {
+    public function testSkippable() {
         $obj = new IntoVoid();
         $dump = $this->service->desegregate($obj);
     }
@@ -54,8 +49,7 @@ class TransformerTest extends \PHPUnit_Framework_TestCase
      *
      * @expectedException \RuntimeException
      */
-    public function testExceptionForBadCreation()
-    {
+    public function testExceptionForBadCreation() {
         $this->service->create(array('bazinga' => 73));
     }
 
