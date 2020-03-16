@@ -12,13 +12,11 @@ use Trismegiste\Alkahest\Transform\Mediator\TypeRegistry;
 /**
  * InvariantObject is a identity mapper for object
  */
-class InvariantObject extends AbstractMapper
-{
+class InvariantObject extends AbstractMapper {
 
     protected $invariant;
 
-    public function __construct(TypeRegistry $ctx, array $fqcn)
-    {
+    public function __construct(TypeRegistry $ctx, array $fqcn) {
         parent::__construct($ctx);
         $this->invariant = $fqcn;
     }
@@ -26,24 +24,21 @@ class InvariantObject extends AbstractMapper
     /**
      * {@inheritDoc}
      */
-    public function mapFromDb($var)
-    {
+    public function mapFromDb($var) {
         return $var;
     }
 
     /**
      * {@inheritDoc}
      */
-    public function mapToDb($obj)
-    {
+    public function mapToDb($obj) {
         return $obj;
     }
 
     /**
      * {@inheritDoc}
      */
-    public function isResponsibleFromDb($var)
-    {
+    public function isResponsibleFromDb($var) {
         return (gettype($var) == 'object' ) &&
                 in_array(get_class($var), $this->invariant);
     }
@@ -51,8 +46,7 @@ class InvariantObject extends AbstractMapper
     /**
      * {@inheritDoc}
      */
-    public function isResponsibleToDb($var)
-    {
+    public function isResponsibleToDb($var) {
         return $this->isResponsibleFromDb($var);
     }
 

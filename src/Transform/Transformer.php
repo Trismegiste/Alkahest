@@ -11,21 +11,18 @@ use Trismegiste\Alkahest\Transform\Mediator\RecursiveMapper;
 /**
  * Factory is a transformer to translate object to array and vice versa
  */
-class Transformer implements TransformerInterface
-{
+class Transformer implements TransformerInterface {
 
     protected $delegation;
 
-    public function __construct(RecursiveMapper $algo)
-    {
+    public function __construct(RecursiveMapper $algo) {
         $this->delegation = $algo;
     }
 
     /**
      * {@inheritDoc}
      */
-    public function desegregate($obj)
-    {
+    public function desegregate($obj) {
         if (!is_object($obj)) {
             throw new \InvalidArgumentException('Only object can be transformed into tree');
         }
@@ -39,8 +36,7 @@ class Transformer implements TransformerInterface
     /**
      * {@inheritDoc}
      */
-    public function create(array $dump)
-    {
+    public function create(array $dump) {
         $obj = $this->delegation->recursivCreate($dump);
         if (gettype($obj) != 'object') {
             throw new \RuntimeException('The root entity is not an object');

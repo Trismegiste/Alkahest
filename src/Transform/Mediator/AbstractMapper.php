@@ -15,16 +15,12 @@ namespace Trismegiste\Alkahest\Transform\Mediator;
  *
  * The subclasses declare their responsibilities and the way they make
  * the mapping by implementing the Mapping Interface
- *
- * @author florent
  */
-abstract class AbstractMapper implements Mapping
-{
+abstract class AbstractMapper implements Mapping {
 
     protected $mediator;
 
-    public function __construct(TypeRegistry $ctx)
-    {
+    public function __construct(TypeRegistry $ctx) {
         $this->mediator = $ctx;
         $this->mediator->registerType($this);
     }

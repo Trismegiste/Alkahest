@@ -12,8 +12,6 @@ use Trismegiste\Alkahest\Transform\MappingException;
 /**
  * MapFailure is the last mapper which throws exception when no other mapper
  * is responsible.
- *
- * @author florent
  */
 class MapFailure extends AbstractMapper
 {

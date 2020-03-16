@@ -14,16 +14,13 @@ use Trismegiste\Alkahest\Transform\Mediator\Colleague\PhpCollection;
 /**
  * test for Mediator created by Invocation builder
  */
-class NeutralTest extends AbstractStageTest
-{
+class NeutralTest extends AbstractStageTest {
 
-    protected function createBuilder()
-    {
+    protected function createBuilder() {
         return new Neutral();
     }
 
-    public function getSampleTree()
-    {
+    public function getSampleTree() {
         $obj = new \stdClass();
         $obj->answer = 42;
         $dump = array(MapObject::FQCN_KEY => 'stdClass', 'answer' => 42);
@@ -62,24 +59,21 @@ class NeutralTest extends AbstractStageTest
         return [
             [$obj, $dump],
             [$obj2, $dump2],
-            [new \DateTime(), new \DateTime()]
+            [new \DateTime('@2001'), new \DateTime('@2001')]
         ];
     }
 
-    public function getDataToDb()
-    {
+    public function getDataToDb() {
         $data = parent::getDataToDb();
         return array_merge($data, $this->getSampleTree());
     }
 
-    public function getDataFromDb()
-    {
+    public function getDataFromDb() {
         $data = parent::getDataFromDb();
         return array_merge($data, $this->getSampleTree());
     }
 
-    public function testRestoreWithNonTrivialConstruct()
-    {
+    public function testRestoreWithNonTrivialConstruct() {
         $obj = new Fixtures\VerifMethod(100);
         $dump = $this->mediator->recursivDesegregate($obj);
         $restore = $this->mediator->recursivCreate($dump);
@@ -87,19 +81,13 @@ class NeutralTest extends AbstractStageTest
         $this->assertEquals(119.6, $restore->getTotal());
     }
 
-    /**
-     * @expectedException \DomainException
-     */
-    public function testRootClassEmpty()
-    {
+    public function testRootClassEmpty() {
+        $this->expectException(\DomainException::class);
         $obj = $this->mediator->recursivCreate(array(MapObject::FQCN_KEY => null, 'answer' => 42));
     }
 
-    /**
-     * @expectedException \DomainException
-     */
-    public function testLeafClassEmpty()
-    {
+    public function testLeafClassEmpty() {
+        $this->expectException(\DomainException::class);
         $obj = $this->mediator->recursivCreate(
                 array(
                     MapObject::FQCN_KEY => 'stdClass',
@@ -108,19 +96,13 @@ class NeutralTest extends AbstractStageTest
         );
     }
 
-    /**
-     * @expectedException \DomainException
-     */
-    public function testRootClassNotFound()
-    {
+    public function testRootClassNotFound() {
+        $this->expectException(\DomainException::class);
         $this->mediator->recursivCreate(array(MapObject::FQCN_KEY => 'Snark', 'answer' => 42));
     }
 
-    /**
-     * @expectedException \DomainException
-     */
-    public function testLeafClassNotFound()
-    {
+    public function testLeafClassNotFound() {
+        $this->expectException(\DomainException::class);
         $obj = $this->mediator->recursivCreate(
                 array(
                     MapObject::FQCN_KEY => 'stdClass',
@@ -129,15 +111,13 @@ class NeutralTest extends AbstractStageTest
         );
     }
 
-    public function testSkippable()
-    {
+    public function testSkippable() {
         $obj = new Fixtures\IntoVoid();
         $dump = $this->mediator->recursivDesegregate($obj);
         $this->assertNull($dump);
     }
 
-    public function testChildSkippable()
-    {
+    public function testChildSkippable() {
         $obj = new \stdClass();
         $obj->dummy = new Fixtures\IntoVoid();
         $obj->product = new Fixtures\Product("aaa", 23);
@@ -146,8 +126,7 @@ class NeutralTest extends AbstractStageTest
         $this->assertNotNull($dump['product']);
     }
 
-    public function testCleanable()
-    {
+    public function testCleanable() {
         $obj = new Fixtures\Bear();
         $dump = $this->mediator->recursivDesegregate($obj);
         $this->assertNull($dump['transient']);
@@ -156,8 +135,7 @@ class NeutralTest extends AbstractStageTest
         $this->assertEquals(range(1, 10), $restore->getTransient());
     }
 
-    public function testSplObjectStorage()
-    {
+    public function testSplObjectStorage() {
         $obj = new Fixtures\CartPlus();
         $obj->addItem(3, new Fixtures\Product('EF85L', 1999));
         $flat = [
@@ -181,14 +159,19 @@ class NeutralTest extends AbstractStageTest
         $this->assertEquals($flat, $dump);
         $restore = $this->mediator->recursivCreate($dump);
 
+        $this->assertInstanceOf(\SplObjectStorage::class, $restore->getIterator());
+        $this->assertCount(1, $restore->getIterator());
         // SplObjectStorage are not equals since spl_object_hash($obj)
         // are unique for each Product instances
-        $this->assertEquals($obj->getIterator()->current(), $restore->getIterator()->current());
-        $this->assertEquals($obj->getIterator()->getInfo(), $restore->getIterator()->getInfo());
+        $expect = $obj->getIterator();
+        $restoredOS = $restore->getIterator();
+        $expect->rewind();
+        $restoredOS->rewind();
+        $this->assertEquals($expect->current(), $restoredOS->current());
+        $this->assertEquals($expect->getInfo(), $restoredOS->getInfo());
     }
 
-    public function testArrayObject()
-    {
+    public function testArrayObject() {
         $obj = new Fixtures\AOPersistable([new Fixtures\Product('lightsaber', 20000)]);
         $dump = $this->mediator->recursivDesegregate($obj);
         $restore = $this->mediator->recursivCreate($dump);

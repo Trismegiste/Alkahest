@@ -14,56 +14,45 @@ use Trismegiste\Alkahest\Transform\Mediator\Mediator;
  *
  * @author flo
  */
-class MapObjectTest extends MapperTestTemplate
-{
+class MapObjectTest extends MapperTestTemplate {
 
-    protected function createMapper()
-    {
+    protected function createMapper() {
         return new MapObject($this->createMediatorMockup());
     }
 
-    public function getDataFromDb()
-    {
+    public function getDataFromDb() {
         $obj = new \stdClass();
         $obj->answer = 42;
         $dump = array(MapObject::FQCN_KEY => 'stdClass', 'answer' => 42);
         return array(array($dump, $obj));
     }
 
-    public function getDataToDb()
-    {
+    public function getDataToDb() {
         $obj = new \stdClass();
         $obj->answer = 42;
         $dump = array(MapObject::FQCN_KEY => 'stdClass', 'answer' => 42);
         return array(array($obj, $dump));
     }
 
-    public function getResponsibleDataToDb()
-    {
+    public function getResponsibleDataToDb() {
         return array(array(new \stdClass()));
     }
 
-    public function getResponsibleDataFromDb()
-    {
+    public function getResponsibleDataFromDb() {
         return array(array(array(MapObject::FQCN_KEY => 'hello')));
     }
 
-    public function getNotResponsibleDataToDb()
-    {
+    public function getNotResponsibleDataToDb() {
         return array(array(null), array(42), array(array('hello')));
     }
 
-    public function getNotResponsibleDataFromDb()
-    {
+    public function getNotResponsibleDataFromDb() {
         return array(array(null), array(array('prop' => 'hello')), array(new \DateTime()));
     }
 
-    /**
-     * @expectedException DomainException
-     * @expectedExceptionMessage does not exist
-     */
-    public function testNotFound()
-    {
+    public function testNotFound() {
+        $this->expectException(\DomainException::class);
+        $this->expectExceptionMessage('does not exist');
         $mapper = $this->createMapper();
         $dump = array(MapObject::FQCN_KEY => 'NotFound', 'answer' => 42);
         $mapper->mapFromDb($dump);

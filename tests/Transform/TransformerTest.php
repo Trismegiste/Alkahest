@@ -13,8 +13,6 @@ use tests\Alkahest\Fixtures\IntoVoid;
 
 /**
  * TransformerTest test for Transformer
- *
- * @author florent
  */
 class TransformerTest extends \PHPUnit\Framework\TestCase {
 
@@ -29,27 +27,22 @@ class TransformerTest extends \PHPUnit\Framework\TestCase {
         unset($this->service);
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     */
     public function testOnlyObject() {
+        $this->expectException(\InvalidArgumentException::class);
         $dump = $this->service->desegregate(array('nawak'));
     }
 
-    /**
-     * @expectedException \LogicException
-     */
     public function testSkippable() {
+        $this->expectException(\LogicException::class);
         $obj = new IntoVoid();
         $dump = $this->service->desegregate($obj);
     }
 
     /**
      * The tranformer MUST return an object
-     *
-     * @expectedException \RuntimeException
      */
     public function testExceptionForBadCreation() {
+        $this->expectException(\RuntimeException::class);
         $this->service->create(array('bazinga' => 73));
     }
 

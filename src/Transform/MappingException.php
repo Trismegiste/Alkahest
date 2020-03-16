@@ -9,11 +9,9 @@ namespace Trismegiste\Alkahest\Transform;
 /**
  * MappingException is an exception when mapping fails
  */
-class MappingException extends \RuntimeException
-{
+class MappingException extends \RuntimeException {
 
-    public function __construct($var, $ctx)
-    {
+    public function __construct($var, $ctx) {
         $type = gettype($var);
         if ($type === 'object') {
             $type = get_class($var);

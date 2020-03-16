@@ -13,41 +13,34 @@ use Trismegiste\Alkahest\Transform\Mediator\AbstractMapper;
  * Component : Colleague (concrete)
  *
  * MapArray deals the mapping with arrays
- *
- * @author florent
  */
-class MapArray extends AbstractMapper
-{
+class MapArray extends AbstractMapper {
 
     /**
      * {@inheritDoc}
      */
-    public function mapFromDb($param)
-    {
+    public function mapFromDb($param) {
         return array_map(array($this->mediator, 'recursivCreate'), $param);
     }
 
     /**
      * {@inheritDoc}
      */
-    public function mapToDb($arr)
-    {
+    public function mapToDb($arr) {
         return array_map(array($this->mediator, 'recursivDesegregate'), $arr);
     }
 
     /**
      * {@inheritDoc}
      */
-    public function isResponsibleFromDb($var)
-    {
+    public function isResponsibleFromDb($var) {
         return 'array' == gettype($var);
     }
 
     /**
      * {@inheritDoc}
      */
-    public function isResponsibleToDb($var)
-    {
+    public function isResponsibleToDb($var) {
         return 'array' == gettype($var);
     }
 

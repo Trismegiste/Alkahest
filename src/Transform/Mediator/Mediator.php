@@ -28,17 +28,13 @@ namespace Trismegiste\Alkahest\Transform\Mediator;
  * I've tried two of three times to refactor this in a beautiful CoR. In the end
  * the code of this Mediator is very simple, I think it proves this pattern was
  * the good pattern, mainly because we are in a recursive algorithm.
- *
- * @author flo
  */
-class Mediator extends AbstractMediator
-{
+class Mediator extends AbstractMediator {
 
     /**
      * {@inheritDoc}
      */
-    public function recursivDesegregate($obj)
-    {
+    public function recursivDesegregate($obj) {
         $strat = null;
         foreach ($this->mappingColleague as $map) {
             if ($map->isResponsibleToDb($obj)) {
@@ -53,8 +49,7 @@ class Mediator extends AbstractMediator
     /**
      * {@inheritDoc}
      */
-    public function recursivCreate($param)
-    {
+    public function recursivCreate($param) {
         $strat = null;
         foreach ($this->mappingColleague as $map) {
             if ($map->isResponsibleFromDb($param)) {

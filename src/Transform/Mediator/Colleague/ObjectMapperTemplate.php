@@ -14,11 +14,8 @@ use Trismegiste\Alkahest\Utils\InjectionClass;
  * Design Pattern : Template Method
  * 
  * ObjectMapperTemplate is a template for mapping object
- *
- * @author florent
  */
-abstract class ObjectMapperTemplate extends AbstractMapper
-{
+abstract class ObjectMapperTemplate extends AbstractMapper {
 
     /**
      * Extract the FQCN from the array (coming from database)
@@ -42,8 +39,7 @@ abstract class ObjectMapperTemplate extends AbstractMapper
     /**
      * {@inheritDoc}
      */
-    public function mapFromDb($param)
-    {
+    public function mapFromDb($param) {
         $fqcn = $this->extractFqcn($param);
 
         $reflector = new InjectionClass($fqcn);
@@ -67,8 +63,7 @@ abstract class ObjectMapperTemplate extends AbstractMapper
     /**
      * {@inheritDoc}
      */
-    public function mapToDb($obj)
-    {
+    public function mapToDb($obj) {
         if ($obj instanceof Cleanable) {
             $obj->sleep();
         }
