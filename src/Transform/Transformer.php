@@ -35,7 +35,7 @@ class Transformer implements TransformerInterface {
      */
     public function create(array $dump): object {
         $obj = $this->delegation->recursivCreate($dump);
-        if (gettype($obj) != 'object') {
+        if (!is_object($obj)) {
             throw new \RuntimeException('The root entity is not an object');
             // SRP : only Mediator knows if $dump will be an object or not
         }
