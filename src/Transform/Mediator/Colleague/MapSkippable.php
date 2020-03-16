@@ -15,11 +15,11 @@ use Trismegiste\Alkahest\Transform\Skippable;
  */
 class MapSkippable extends AbstractMapper {
 
-    public function isResponsibleFromDb($var) {
+    public function isResponsibleFromDb($var): bool {
         return false;
     }
 
-    public function isResponsibleToDb($var) {
+    public function isResponsibleToDb($var): bool {
         return ('object' == gettype($var)) && ($var instanceof Skippable);
     }
 

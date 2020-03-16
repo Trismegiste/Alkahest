@@ -30,14 +30,14 @@ class MapNullable extends AbstractMapper {
     /**
      * {@inheritDoc}
      */
-    public function isResponsibleFromDb($var) {
+    public function isResponsibleFromDb($var): bool {
         return gettype($var) == 'NULL';
     }
 
     /**
      * {@inheritDoc}
      */
-    public function isResponsibleToDb($var) {
+    public function isResponsibleToDb($var): bool {
         return in_array(gettype($var), array('NULL', 'resource'));
     }
 

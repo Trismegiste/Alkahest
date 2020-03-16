@@ -13,38 +13,33 @@ use Trismegiste\Alkahest\Transform\MappingException;
  * MapFailure is the last mapper which throws exception when no other mapper
  * is responsible.
  */
-class MapFailure extends AbstractMapper
-{
+class MapFailure extends AbstractMapper {
 
     /**
      * {@inheritDoc}
      */
-    public function mapFromDb($var)
-    {
+    public function mapFromDb($var) {
         throw new MappingException($var, 'restoration');
     }
 
     /**
      * {@inheritDoc}
      */
-    public function mapToDb($var)
-    {
+    public function mapToDb($var) {
         throw new MappingException($var, 'persistence');
     }
 
     /**
      * {@inheritDoc}
      */
-    public function isResponsibleFromDb($var)
-    {
+    public function isResponsibleFromDb($var): bool {
         return true;
     }
 
     /**
      * {@inheritDoc}
      */
-    public function isResponsibleToDb($var)
-    {
+    public function isResponsibleToDb($var): bool {
         return true;
     }
 

@@ -33,14 +33,14 @@ class MapArray extends AbstractMapper {
     /**
      * {@inheritDoc}
      */
-    public function isResponsibleFromDb($var) {
+    public function isResponsibleFromDb($var): bool {
         return 'array' == gettype($var);
     }
 
     /**
      * {@inheritDoc}
      */
-    public function isResponsibleToDb($var) {
+    public function isResponsibleToDb($var): bool {
         return 'array' == gettype($var);
     }
 

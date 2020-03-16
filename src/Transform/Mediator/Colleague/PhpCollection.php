@@ -13,8 +13,7 @@ use Trismegiste\Alkahest\Transform\Mediator\Colleague\MapObject;
  * PhpCollection maps php collections internal classes
  * like ArrayObject and SplObjecStorage
  */
-class PhpCollection extends AbstractMapper
-{
+class PhpCollection extends AbstractMapper {
 
     const CONTENT_KEY = 'content';
     const SPL_KEY = 'key';
@@ -25,8 +24,7 @@ class PhpCollection extends AbstractMapper
     /**
      * {@inheritDoc}
      */
-    public function isResponsibleFromDb($var)
-    {
+    public function isResponsibleFromDb($var): bool {
         return is_array($var) &&
                 array_key_exists(MapObject::FQCN_KEY, $var) &&
                 in_array($var[MapObject::FQCN_KEY], $this->collectionType);
@@ -35,16 +33,14 @@ class PhpCollection extends AbstractMapper
     /**
      * {@inheritDoc}
      */
-    public function isResponsibleToDb($var)
-    {
+    public function isResponsibleToDb($var): bool {
         return is_object($var) && in_array(get_class($var), $this->collectionType);
     }
 
     /**
      * {@inheritDoc}
      */
-    public function mapFromDb($var)
-    {
+    public function mapFromDb($var) {
         $collection = null;
 
         switch ($var[MapObject::FQCN_KEY]) {
@@ -71,8 +67,7 @@ class PhpCollection extends AbstractMapper
     /**
      * {@inheritDoc}
      */
-    public function mapToDb($var)
-    {
+    public function mapToDb($var) {
         $struc[MapObject::FQCN_KEY] = get_class($var);
 
         switch (get_class($var)) {
@@ -88,8 +83,7 @@ class PhpCollection extends AbstractMapper
         return $struc;
     }
 
-    protected function dumpArray(\ArrayObject $arr)
-    {
+    protected function dumpArray(\ArrayObject $arr) {
         $content = array();
 
         foreach ($arr as $key => $val) {
@@ -99,8 +93,7 @@ class PhpCollection extends AbstractMapper
         return $content;
     }
 
-    protected function dumpSplStorage(\SplObjectStorage $arr)
-    {
+    protected function dumpSplStorage(\SplObjectStorage $arr) {
         $contentKey = array();
         $contentVal = array();
 

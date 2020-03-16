@@ -32,14 +32,14 @@ class MapScalar extends AbstractMapper {
     /**
      * {@inheritDoc}
      */
-    public function isResponsibleFromDb($var) {
+    public function isResponsibleFromDb($var): bool {
         return in_array(gettype($var), $this->scalarType);
     }
 
     /**
      * {@inheritDoc}
      */
-    public function isResponsibleToDb($var) {
+    public function isResponsibleToDb($var): bool {
         return $this->isResponsibleFromDb($var);
     }
 

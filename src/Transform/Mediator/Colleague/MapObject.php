@@ -40,14 +40,14 @@ class MapObject extends ObjectMapperTemplate {
     /**
      * {@inheritDoc}
      */
-    public function isResponsibleFromDb($var) {
+    public function isResponsibleFromDb($var): bool {
         return (gettype($var) == 'array') && array_key_exists(self::FQCN_KEY, $var);
     }
 
     /**
      * {@inheritDoc}
      */
-    public function isResponsibleToDb($var) {
+    public function isResponsibleToDb($var): bool {
         return gettype($var) == 'object';
     }
 

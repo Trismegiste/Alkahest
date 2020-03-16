@@ -38,7 +38,7 @@ class InvariantObject extends AbstractMapper {
     /**
      * {@inheritDoc}
      */
-    public function isResponsibleFromDb($var) {
+    public function isResponsibleFromDb($var): bool {
         return (gettype($var) == 'object' ) &&
                 in_array(get_class($var), $this->invariant);
     }
@@ -46,7 +46,7 @@ class InvariantObject extends AbstractMapper {
     /**
      * {@inheritDoc}
      */
-    public function isResponsibleToDb($var) {
+    public function isResponsibleToDb($var): bool {
         return $this->isResponsibleFromDb($var);
     }
 

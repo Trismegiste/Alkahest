@@ -9,8 +9,7 @@ namespace Trismegiste\Alkahest\Transform\Mediator;
 /**
  * A contract for a mapper database <-> memory
  */
-interface Mapping
-{
+interface Mapping {
 
     /**
      * Convert a variable to a persistable structure (typically an array)
@@ -39,7 +38,7 @@ interface Mapping
      * @param mixed $var the variable to test
      * @return boolean
      */
-    function isResponsibleFromDb($var);
+    function isResponsibleFromDb($var): bool;
 
     /**
      * Returns if this class is responsible for mapping a variable
@@ -48,5 +47,5 @@ interface Mapping
      * @param mixed $var the variable to test
      * @return boolean
      */
-    function isResponsibleToDb($var);
+    function isResponsibleToDb($var): bool;
 }
