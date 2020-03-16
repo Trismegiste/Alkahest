@@ -14,7 +14,7 @@ namespace Trismegiste\Alkahest\Transform\Mediator;
  */
 abstract class AbstractMediator implements RecursiveMapper, TypeRegistry {
 
-    protected $mappingColleague = array();
+    protected $mappingColleague = [];
 
     /**
      * {@inheritDoc}
@@ -23,7 +23,7 @@ abstract class AbstractMediator implements RecursiveMapper, TypeRegistry {
      * The first colleague which said "I'll do it" will be the first
      * to work no matter others colleague.
      */
-    public function registerType(Mapping $colleague) {
+    public function registerType(Mapping $colleague): void {
         $this->mappingColleague[] = $colleague;
     }
 
