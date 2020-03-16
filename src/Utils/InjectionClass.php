@@ -10,8 +10,7 @@ namespace Trismegiste\Alkahest\Utils;
  * InjectionClass can dynamically
  * build object and properties
  */
-class InjectionClass extends \ReflectionClass
-{
+class InjectionClass extends \ReflectionClass {
 
     /**
      * Set a property into an object, even it does not exist in the class
@@ -20,8 +19,7 @@ class InjectionClass extends \ReflectionClass
      * @param string $key
      * @param mixed $value 
      */
-    public function injectProperty($obj, $key, $value)
-    {
+    public function injectProperty(object $obj, string $key, $value) {
         if ($this->hasProperty($key)) {
             $prop = $this->getProperty($key);
             $prop->setAccessible(true);

@@ -6,6 +6,8 @@
 
 namespace Trismegiste\Alkahest\Transform\Delegation;
 
+use Trismegiste\Alkahest\Transform\Mediator\TypeRegistry;
+
 /**
  * Design Pattern : Builder
  * Component : Director
@@ -14,8 +16,7 @@ namespace Trismegiste\Alkahest\Transform\Delegation;
  *
  * SRP : Knows the order to build the chain of mapping
  */
-class MappingDirector
-{
+class MappingDirector {
 
     /**
      * Builds the mediator for mapping with the help of builder
@@ -24,8 +25,7 @@ class MappingDirector
      * 
      * @return TypeRegistry
      */
-    public function create(MappingBuilder $builder)
-    {
+    public function create(MappingBuilder $builder): TypeRegistry {
         $algo = $builder->createChain();
         $builder->createDbSpecific($algo);
         $builder->createObject($algo);

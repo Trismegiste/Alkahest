@@ -19,4 +19,11 @@ class InjectionClassTest extends \PHPUnit\Framework\TestCase {
         $this->assertInstanceOf(\DateTime::class, $obj);
     }
 
+    public function testInjectProperty() {
+        $obj = (object) [];
+        $sut = new InjectionClass($obj);
+        $sut->injectProperty($obj, 'answer', 42);
+        $this->assertEquals(42, $obj->answer);
+    }
+
 }

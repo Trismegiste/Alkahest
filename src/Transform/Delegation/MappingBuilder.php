@@ -17,15 +17,14 @@ use Trismegiste\Alkahest\Transform\Mediator\TypeRegistry;
  *
  * @author flo
  */
-interface MappingBuilder
-{
+interface MappingBuilder {
 
     /**
      * Create the chain of algorithms of mapping
      *
      * @return TypeRegistry
      */
-    function createChain();
+    function createChain(): TypeRegistry;
 
     /**
      * Register mappers for non-object (scalar, null, array...)

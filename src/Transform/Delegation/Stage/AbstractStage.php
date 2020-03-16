@@ -20,22 +20,19 @@ use Trismegiste\Alkahest\Transform\Mediator\TypeRegistry;
  *
  * @author flo
  */
-abstract class AbstractStage implements MappingBuilder
-{
+abstract class AbstractStage implements MappingBuilder {
 
     /**
      * {@inheritDoc}
      */
-    public function createChain()
-    {
+    public function createChain(): TypeRegistry {
         return new Mediator();
     }
 
     /**
      * {@inheritDoc}
      */
-    public function createNonObject(TypeRegistry $algo)
-    {
+    public function createNonObject(TypeRegistry $algo) {
         new Colleague\MapArray($algo);
         new Colleague\MapScalar($algo);
         new Colleague\MapNullable($algo);
@@ -44,17 +41,16 @@ abstract class AbstractStage implements MappingBuilder
     /**
      * {@inheritDoc}
      */
-    public function createDbSpecific(TypeRegistry $algo)
-    {
+    public function createDbSpecific(TypeRegistry $algo) {
+        
     }
 
     /**
      * {@inheritDoc}
      * Default adapter for implementation of the interface
      */
-    public function createBlackHole(TypeRegistry $algo)
-    {
-
+    public function createBlackHole(TypeRegistry $algo) {
+        
     }
 
 }
